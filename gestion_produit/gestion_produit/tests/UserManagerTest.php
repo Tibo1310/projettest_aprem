@@ -39,6 +39,11 @@ class UserManagerTest extends TestCase {
         $this->assertEquals("john@example.com", $users[0]['email']);
     }
 
+    public function testAddUserEmailException(): void {
+        $this->expectException(InvalidArgumentException::class);
+        $this->userManager->addUser("John Doe", "invalid-email");
+    }
+
     public function testUpdateUser(): void {
         $this->userManager->addUser("John Doe", "john@example.com");
         $users = $this->userManager->getUsers();
@@ -70,15 +75,19 @@ class UserManagerTest extends TestCase {
         $this->assertCount(2, $users);
     }
 
-    public function testInvalidEmail(): void {
-        $this->expectException(InvalidArgumentException::class);
-        $this->userManager->addUser("John Doe", "invalid-email");
+    public function testInvalidUpdateThrowsException(): void {
+        $this->expectException(Exception::class);
+        $this->userManager->updateUser(999, "Test User", "test@example.com");
+    }
+
+    public function testInvalidDeleteThrowsException(): void {
+        $this->expectException(Exception::class);
+        $this->userManager->removeUser(999);
     }
 
     protected function tearDown(): void {
         try {
             if (isset($this->db)) {
-                // On vide juste la table au lieu de supprimer la base
                 $this->db->exec("TRUNCATE TABLE users");
             }
         } catch (PDOException $e) {
