@@ -8,6 +8,7 @@ CREATE TABLE books (
     author VARCHAR(100) NOT NULL,
     publication_year INT NOT NULL
 );
+TEST
 
 -- Ajout de la création de la base de test
 CREATE DATABASE IF NOT EXISTS library_management_test;
