@@ -1,0 +1,1 @@
+{"version":1,"defects":[],"times":{"BookManagerTest::testAddBook":0.061,"BookManagerTest::testUpdateBook":0.032,"BookManagerTest::testRemoveBook":0.043,"BookManagerTest::testGetBooks":0.054,"BookManagerTest::testInvalidUpdateThrowsException":0.054,"BookManagerTest::testInvalidDeleteThrowsException":0.044}}
