@@ -6,8 +6,11 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'BookManager' => $baseDir . '/BookManager.php',
-    'BookManagerTest' => $baseDir . '/tests/BookManagerTest.php',
+    'UserManager' => $baseDir . '/UserManager.php',
+    'UserManagerTest' => $baseDir . '/tests/UserManagerTest.php',
+    'ComposerAutoloaderInitd04a6a4216eec9684d7a430e94632a78' => $vendorDir . '/composer/autoload_real.php',
+    'Composer\\Autoload\\ClassLoader' => $vendorDir . '/composer/ClassLoader.php',
+    'Composer\\Autoload\\ComposerStaticInitd04a6a4216eec9684d7a430e94632a78' => $vendorDir . '/composer/autoload_static.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'DeepCopy\\DeepCopy' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
     'DeepCopy\\Exception\\CloneException' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',

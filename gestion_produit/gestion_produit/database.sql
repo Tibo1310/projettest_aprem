@@ -1,22 +1,26 @@
-CREATE DATABASE library_management;
+-- Suppression de la base si elle existe
+DROP DATABASE IF EXISTS user_management;
 
-USE library_management;
+-- Création de la base de données principale
+CREATE DATABASE user_management;
 
-CREATE TABLE books (
+-- Utilisation de la base
+USE user_management;
+
+-- Création de la table users
+CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(200) NOT NULL,
-    author VARCHAR(100) NOT NULL,
-    publication_year INT NOT NULL
+    name VARCHAR(200) NOT NULL,
+    email VARCHAR(100) NOT NULL
 );
 
--- Ajout de la création de la base de test
-CREATE DATABASE IF NOT EXISTS library_management_test;
+-- Création de la base de test (optionnel)
+CREATE DATABASE user_management_test;
 
-USE library_management_test;
+USE user_management_test;
 
-CREATE TABLE IF NOT EXISTS books (
+CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(200) NOT NULL,
-    author VARCHAR(100) NOT NULL,
-    publication_year INT NOT NULL
+    name VARCHAR(200) NOT NULL,
+    email VARCHAR(100) NOT NULL
 );

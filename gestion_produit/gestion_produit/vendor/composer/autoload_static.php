@@ -39,8 +39,11 @@ class ComposerStaticInitd04a6a4216eec9684d7a430e94632a78
     );
 
     public static $classMap = array (
-        'BookManager' => __DIR__ . '/../..' . '/BookManager.php',
-        'BookManagerTest' => __DIR__ . '/../..' . '/tests/BookManagerTest.php',
+        'UserManager' => __DIR__ . '/../..' . '/UserManager.php',
+        'UserManagerTest' => __DIR__ . '/../..' . '/tests/UserManagerTest.php',
+        'ComposerAutoloaderInitd04a6a4216eec9684d7a430e94632a78' => __DIR__ . '/..' . '/composer/autoload_real.php',
+        'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
+        'Composer\\Autoload\\ComposerStaticInitd04a6a4216eec9684d7a430e94632a78' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
