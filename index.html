@@ -1,96 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Gestion des Utilisateurs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des utilisateurs</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Gestion des Utilisateurs</h1>
-    
+
+    <h1>Gestion des utilisateurs</h1>
+
     <form id="userForm">
+        <input type="hidden" id="userId">
         <input type="text" id="name" placeholder="Nom" required>
-        <input type="email" id="email" placeholder="Email" required title="Veuillez entrer une adresse email valide">
-        <button type="submit">Ajouter/Modifier</button>
+        <input type="email" id="email" placeholder="Email" required>
+        <select id="role" title="Choisir un rôle">
+            <option value="user">Utilisateur</option>
+            <option value="admin">Admin</option>
+        </select>
+        <button type="submit">Ajouter</button>
     </form>
 
-    <div class="error-message"></div>
-
+    <h2>Liste des utilisateurs</h2>
     <ul id="userList"></ul>
 
-    <script>
-        let editingId = null;
+    <script src="script.js"></script>
 
-        async function loadUsers() {
-            const response = await fetch('api.php');
-            const users = await response.json();
-            const userList = document.getElementById('userList');
-            userList.innerHTML = '';
-            
-            users.forEach(user => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    ${user.name} (${user.email})
-                    <div>
-                        <button onclick="editUser(${user.id}, '${user.name}', '${user.email}')" title="Modifier">Modifier</button>
-                        <button onclick="deleteUser(${user.id})" title="Supprimer">Supprimer</button>
-                    </div>
-                `;
-                userList.appendChild(li);
-            });
-        }
-
-        async function handleSubmit(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-
-            try {
-                const response = await fetch('api.php', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        action: editingId ? 'update' : 'add',
-                        id: editingId,
-                        name,
-                        email
-                    })
-                });
-
-                if (!response.ok) {
-                    const error = await response.text();
-                    throw new Error(error);
-                }
-
-                document.getElementById('userForm').reset();
-                editingId = null;
-                await loadUsers();
-                
-                const errorMessage = document.querySelector('.error-message');
-                errorMessage.classList.remove('visible');
-            } catch (error) {
-                const errorMessage = document.querySelector('.error-message');
-                errorMessage.textContent = error.message;
-                errorMessage.classList.add('visible');
-            }
-        }
-
-        async function deleteUser(id) {
-            await fetch('api.php', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({action: 'delete', id})
-            });
-            await loadUsers();
-        }
-
-        function editUser(id, name, email) {
-            editingId = id;
-            document.getElementById('name').value = name;
-            document.getElementById('email').value = email;
-        }
-
-        document.getElementById('userForm').addEventListener('submit', handleSubmit);
-        loadUsers();
-    </script>
 </body>
 </html>
