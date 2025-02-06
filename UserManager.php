@@ -37,6 +37,12 @@ class UserManager {
     }
 
     public function removeUser(int $id): void {
+        $checkStmt = $this->db->prepare("SELECT id FROM users WHERE id = :id");
+        $checkStmt->execute(['id' => $id]);
+        if (!$checkStmt->fetch()) {
+            throw new Exception("Utilisateur introuvable.");
+        }
+
         $stmt = $this->db->prepare("DELETE FROM users WHERE id = :id");
         $stmt->execute(['id' => $id]);
     }
@@ -55,6 +61,12 @@ class UserManager {
     }
 
     public function updateUser(int $id, string $name, string $email, string $role = null): void {
+        $checkStmt = $this->db->prepare("SELECT id FROM users WHERE id = :id");
+        $checkStmt->execute(['id' => $id]);
+        if (!$checkStmt->fetch()) {
+            throw new Exception("Utilisateur introuvable.");
+        }
+
         if ($role !== null && !in_array($role, ['admin', 'user'])) {
             throw new InvalidArgumentException("Rôle invalide.");
         }
