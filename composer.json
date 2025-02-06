@@ -1,0 +1,17 @@
+{
+    "require-dev": {
+        "php-webdriver/webdriver": "^1.15",
+        "phpunit/phpunit": "^9.0",
+        "symfony/process": "^5.4"
+    },
+    "autoload": {
+        "classmap": [
+            "."
+        ]
+    },
+    "config": {
+        "platform": {
+            "php": "8.2.12"
+        }
+    }
+} 

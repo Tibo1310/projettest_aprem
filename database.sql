@@ -24,3 +24,6 @@ CREATE TABLE users (
     name VARCHAR(200) NOT NULL,
     email VARCHAR(100) NOT NULL
 );
+    
+-- Modification de la table users pour ajouter le rôle
+ALTER TABLE users ADD COLUMN role VARCHAR(50) DEFAULT 'user';
